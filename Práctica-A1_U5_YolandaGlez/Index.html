@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title>"Practica A1, Tema 5: Trabajando con GitHub y PDC"</title>
+</head>
+<body>
+<div style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>"Dominios"</i></li>
+    <li><b>Componentes del grupo:</b> <i>Yolanda Maria Glez Montelongo</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2013/2014</i></li>
+    <li><b>Fecha de entrega:</b> <i>24 de Abril de 2014</i></li>
+  </ul>
+  </div>
+</div>
+<div style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<a href='#índice/introducción'>¿En que consiste la practica?</a> | <a href='#bloque1'>Breve muestra de como utilizamos un repositorio en GitHub</a> |<a href='#bloque2'>PDC WindowsServer</a> 
+</div>
+
+<h1><a id='índice/introducción'>¿En que consiste la practica?</a></h1>
+<p>Para esta practica de Dominios, utilizaremos "GitHub", un servidor de Internet muy parecido a un almacenamiento de datos y archivos en repositorios previamente creados al hacerte una cuenta, donde 
+subiremos nuestro trabajo de PDC(Controlador Primario de Dominio) en Windows Server, añadiendolo al repositorio de GIT, por comandos, desde nuestro equipo.</p>
+<h1><a id='bloque1'>Breve muestra de como utilizamos un repositorio en GitHub</a></h1>
+<p><h3><u>1.1 - Configuracion de los equipos a utilizar en este tema</u></h3></p>
+<p>Para comenzar con el tema de Dominios, necesitamos configurar 5 MV esenciales para las proximas practicas. En las siguientes imagenes se ve la configuracion de IP que se pide para dichas MV:</p>
+<p>-> MV1: SO Windows 2008 Server Enterprise</p>
+<p><img src='./files/DOMIN_0_Win2008.png'/></p>
+<p>-> MV2: SO Windows 7 Enterprise</p>
+<p><img src='./files/DOMIN_0_win7.png'/></p>
+<p>-> MV3: SO GNU/Linux Debian7</p>
+<p><img src='./files/DOMIN_0_deb7.png'/></p>
+<p>-> MV4: SO GNU/Linux OpenSUSE 13.1</p>
+<p><img src='./files/DOMIN_0_Suse.png'/></p>
+
+<p><h3><u>1.2 - GitHub: Instalacion y utilizacion con repositorio</u></h3></p>
+<p><h4><u>1.2.1 - Instalacion</u></h4></p>
+<p>Primero que nada tenemos que hacernos una cuenta de GitHub en la pagina oficial (www.github.com) y dentro de esa cuenta, crear un repositorio llamado "idp1314nombre-del-alumno" (obligatoriamente
+ marcaremos la opcion <i>"Initialize this repository with a README"</i> para que el repositorio contenga al menos un fichero)</p>
+<p>Luego, comenzaremos con la instalacion en el equipo local del servidor GIT y a continuacion, configuramos el email y el nombre del usuario GIT que tenemos</p>
+<p><img src='./files/TrabConGIT_0-1Ubuntu.png'/></p>
+<p>Generamos el par de claves publica/privada</p>
+<p><img src='./files/TrabConGIT_2PublicKey_Ubuntu.png'/></p>
+<p>Para ver la clave publica utilizaremos la ruta <i>/mnt/asir/home/.ssh/id_rsa.pub.</i> que se especifica en la imagen anterior</p>
+<p><img src='./files/TrabConGIT_4PublicKey_Ubuntu.png'/></p>
+<p>Añadimos la clave al repositorio de GitHub mediante la cuenta que creamos antes de empezar</p>
+<p><img src='./files/TrabconGIT_SSHkey.png'/></p>
+<p>Ahora, clonamos el repositorio remoto en el equipo local mediante el comando <i>git clone git@github.com:usuario-git/idp1314-nombre-del-alumno.git</i></p>
+<p><img src='./files/TrabConGIT_ClonarRemotoRepos.png'/></p>
+<p>Y apartir de aqui, con el comando <i>cd idp1314-nombre-del-alumno</i> comenzamos a trabajar, creando carpetas y ficheros en el repositorio GIT</p>
+<p><h4><u>1.2.2 - Utilizacion con repositorio</u></h4></p>
+<p>Para probar que nos funciona el tema de crear carpetas y ficheros y poderlos subir al repositorio remoto de GIT, haremos un prueba:</p>
+<p>1 -> Creamos un directorio llamado <i>"Trim3"</i>, un documento de texto llamado <i>"prueba.txt"</i> y luego con el comando <i>git status</i> comprobamos que estan guardados los nuevos cambios
+en el repositorio remoto</p>
+<p><img src='./files/TrabConGIT_creandodirectorio+.txt.png'/></p>
+<p>2 -> Añadimos la carpeta que hemos creado con un mensaje informativo que nos ayudara a encontrarla en el repositorio</p>
+<p><img src='./files/TrabConGIT_guardandoloscambios.png'/></p>
+<p>3 -> Subimos al repositorio mediante el comando <i>git push</i> los nuevos cambios</p>
+<p><img src='./files/TrabConGIT_subiendoloalrepos.png'/></p>
+<p>4 -> Vemos el estado del repositorio GitHub</p>
+<img src='./files/TrabConGIT_verestadoGitHuB.png'/></p>
+
+<h1><a id='bloque2'>PDC Windows Server</a></h1>
+<p>Un PDC (Controlador Primario de Dominios) o un "Primary Domain Controller" es un servidor en una red de Windows que mantiene un directorio activo de cuentas de usuario e informacion de seguridad.
+Nosotros instalaremos uno en un Windows Server, que en este caso sera un Windows 2008 Server</p>
+<p><h3><u>1.1 - Configuracion inicial</u></h3></p>
+<p>Normalmente, cuando instalamos el SO, el DNS suele venir ya configurado...pero en nuestro caso, como a la MV le configuramos las IPs, tambien le configuramos el DNS. En la imagen siguiente, se ve
+ como se instala la funcion del DNS que en la MV estaba inhabilitada</p>
+ <img src='./files/PDC_0.png'/></p>
+ <p><h3><u>1.2 - Controlador de Dominio</u></h3></p>
+<p></p>
+</body>
+</html>
